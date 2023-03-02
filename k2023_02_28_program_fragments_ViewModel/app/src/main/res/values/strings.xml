@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">k2023_02_28_program_fragments_ViewModel</string>
+    <string name="fragment_one">Fragment One</string>
+    <string name="fragment_two">Fragment Two</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_One_fragment">Hello blank fragment</string>
+    <string name="hello_world">Hello world!</string>
 </resources>
