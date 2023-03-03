@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding:  ActivityMainBinding
 
+    private var myValue: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fragmentTwo.setOnClickListener {
+            myValue += 1
+            binding.myVarValue.setText(myValue.toString())
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace(R.id.fragment_container, TwoFragment())
@@ -37,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fragmentOne.setOnClickListener {
+            myValue += 1
+            binding.textView.setText(myValue.toString())
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace(R.id.fragment_container, OneFragment())

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">k2023_03_02_fragment_programming</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_one_fragment">Fragment ONE</string>
+    <string name="hello_two_fragment">Fragment TWO</string>
+    <string name="fragment_programming">Fragment Programming</string>
+    <string name="fragment_two">Fragment Two</string>
+    <string name="fragment_one">Fragment One</string>
+    <string name="greeting">Hello world!</string>
+</resources>
