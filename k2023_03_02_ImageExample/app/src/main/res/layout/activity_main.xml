@@ -22,10 +22,11 @@
         app:layout_constraintVertical_bias="0.182" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/roseView"
         android:layout_width="328dp"
         android:layout_height="259dp"
         android:layout_marginTop="60dp"
+        android:contentDescription="@string/public_domain_rose"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"

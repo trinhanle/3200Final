@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Public Domain Rose</string>
     <string name="https_en_m_wikipedia_org_wiki_file_small_red_rose_jpg">https://en.m.wikipedia.org/wiki/File:Small_Red_Rose.JPG</string>
+    <string name="public_domain_rose">Public domain Rose</string>
 </resources>
