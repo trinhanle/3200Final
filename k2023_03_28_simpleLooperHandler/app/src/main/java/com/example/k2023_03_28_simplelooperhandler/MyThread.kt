@@ -4,29 +4,23 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.util.Log
+import android.widget.EditText
+import android.widget.TextView
 
-class MyThread : Thread() {
-    companion object {
-        @JvmField
-        val TAG = "PGB_thread"
-    }
-
-    private var mHandler : MyThreadHandler? = null
-
-    override fun run()  {
+class LooperThread() : Thread("Custom Thread") {
+    var TAG = "LOOPER_THREAD"
+    lateinit var mHandler: Handler
+    override fun run() {
         Looper.prepare()
-        mHandler = Looper.myLooper()?.let { MyThreadHandler(it) }
-        Looper.loop()
-    }
-
-    public fun sendMessageToBackgroundThread(message: Message) {
-        mHandler?.sendMessage(message)
-    }
-
-    private class MyThreadHandler(looper: Looper) : Handler(looper) {
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            Log.i(TAG,Thread.currentThread().name + " " + msg.toString())
+        mHandler = object : Handler(Looper.getMainLooper()) {
+            override fun handleMessage(msg: Message) {
+                Log.d(TAG, "Looper name " + looper.thread.name)
+                msg.arg1 += 3
+                val textView = msg.obj as TextView
+                textView.setText("Hello: " + msg.arg1.toString())
+                looper.thread.interrupt()
+            }
         }
+        Looper.loop()
     }
 }

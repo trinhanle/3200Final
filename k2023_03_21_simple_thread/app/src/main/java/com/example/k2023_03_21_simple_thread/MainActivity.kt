@@ -11,16 +11,20 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var myThread: MyThread
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var myThread = MyThread()
 
         binding.threadButton.setOnClickListener {
             Log.i("BUTTON - start", "NOT yet in THREAD")
-            val t = MyThread()
-            t.start()
+            if (! myThread.isAlive) {
+                myThread = MyThread()
+                myThread.start()
+            }
         }
 
         binding.corDebouncerButton.setOnClickListener {
