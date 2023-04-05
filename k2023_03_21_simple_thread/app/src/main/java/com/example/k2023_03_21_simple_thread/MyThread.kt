@@ -7,7 +7,7 @@ class MyThread : Thread()  {
 
     public override fun run() {
             val time_start = System.currentTimeMillis()
-            Thread.sleep(1000)
+            Thread.sleep(10*1000)
             val time_end = System.currentTimeMillis()
             val delta_time = time_end - time_start
             val threadName = name.toString()

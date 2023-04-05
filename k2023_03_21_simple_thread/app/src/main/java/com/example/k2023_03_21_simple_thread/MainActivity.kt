@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        /*
+         * UI-thread debounce with co-routine not a good idea
+         */
         binding.corDebouncerButton.setOnClickListener {
             runBlocking {
                 launch {
