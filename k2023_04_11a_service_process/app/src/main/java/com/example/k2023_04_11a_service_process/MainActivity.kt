@@ -13,13 +13,14 @@ import com.example.k2023_04_11a_service_process.databinding.ActivityMainBinding
 import com.example.k2023_04_11a_service_process.services.CountingService
 
 private const val MSG_SAY_HELLO = 1
+private const val MSG_SAY_BYE = 2
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    //private lateinit var countService: CountingService
     private var  messenger: Messenger? =  null
+    private var toggle: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -27,12 +28,20 @@ class MainActivity : AppCompatActivity() {
             setContentView(binding.root)
 
             binding.countButton.setOnClickListener {
-                val msg: Message = Message.obtain(null, MSG_SAY_HELLO, 4, -5)
+                val msg: Message?
+
+                if (toggle) {
+                    msg = Message.obtain(null, MSG_SAY_HELLO, 4, -5)
+                } else {
+                    msg = Message.obtain(null, MSG_SAY_BYE, 4, -5)
+                }
+                toggle = !toggle
+
                 try {
                     Log.i("PGB", "SEND Message")
                     messenger?.send(msg)
                 } catch (e: RemoteException) {
-                    Log.i("PGB", "REMOPTE Exception")
+                    Log.i("PGB", "REMOTE Exception")
                     e.printStackTrace()
                 }
                 //val v = countService.getValue()
@@ -49,7 +58,6 @@ class MainActivity : AppCompatActivity() {
 
         private val connection = object: ServiceConnection {
             override fun onServiceConnected(p0: ComponentName?, service: IBinder?) {
-
                 messenger = Messenger(service)
             }
 

@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 
 private const val MSG_SAY_HELLO = 1
+private const val MSG_SAY_BYE = 2
 
 class CountingService : Service() {
     private lateinit var mMessenger: Messenger
@@ -19,9 +20,10 @@ class CountingService : Service() {
         override fun handleMessage(msg: Message) {
             Log.i("PGB", "Message")
             when (msg.what) {
-
                 MSG_SAY_HELLO ->
-                    Toast.makeText(applicationContext, "hello!", Toast.LENGTH_SHORT).show()
+                    Log.i("PGB", "Message  YEAO!!!")
+                MSG_SAY_BYE ->
+                    Log.i("PGB", "Message  Good Day!!!")
                 else -> super.handleMessage(msg)
             }
         }
