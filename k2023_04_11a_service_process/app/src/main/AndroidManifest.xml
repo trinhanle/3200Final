@@ -9,14 +9,13 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.K2023_04_06_basic_intent_service_binded"
-        tools:targetApi="33">
+        android:theme="@style/Theme.K2023_04_11a_service_process"
+        tools:targetApi="31">
         <service
-            android:name=".services.CountService"
+            android:name=".services.CountingService"
             android:enabled="true"
             android:exported="true"
-             />
-
+            android:process=".pt109" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

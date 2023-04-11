@@ -16,6 +16,7 @@ class CountService : Service() {
     }
 
     fun getValue() : Int {
+        //Thread.sleep(1000)
         value = value.plus(1)
         return value
     }
