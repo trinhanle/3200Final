@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.*
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuWrapperICS
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
                 //val v = countService.getValue()
-                Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Hello ", Toast.LENGTH_SHORT).show()
             }
         }
 

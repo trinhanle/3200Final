@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
    private val videoStream = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
 
     private lateinit var bindings : ActivityMainBinding
-    lateinit var myMediaController: MediaController
+    private lateinit var myMediaController: MediaController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

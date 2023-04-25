@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
             msg.recycle()
         }
 
+        bindings.pauseButton.setOnClickListener {
+            msg = Message.obtain(null, VideoCommands.PAUSE.ordinal, 4, -5)
+            messenger?.send(msg)
+            msg.recycle()
+        }
+
         bindings.stopButton.setOnClickListener {
             msg = Message.obtain(null, VideoCommands.STOP.ordinal, 4, -5)
             messenger?.send(msg)

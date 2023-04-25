@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.*
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 
 private const val MSG_SAY_HELLO = 1
@@ -19,6 +20,7 @@ class CountingService : Service() {
     ) : Handler() {
         override fun handleMessage(msg: Message) {
             Log.i("PGB", "Message")
+
             when (msg.what) {
                 MSG_SAY_HELLO ->
                     Log.i("PGB", "Message  YEAO!!!")
