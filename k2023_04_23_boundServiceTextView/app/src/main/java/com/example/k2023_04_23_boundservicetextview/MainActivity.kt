@@ -10,6 +10,7 @@ import android.os.IBinder
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.VideoView
 import com.example.k2023_04_23_boundservicetextview.services.TextViewService
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private var mBound: Boolean = false
     private lateinit var button: Button
     private lateinit var textView: TextView
+    private lateinit var videoView: VideoView
 
     /** Defines callbacks for service binding, passed to bindService().  */
     private val connection = object : ServiceConnection {
@@ -38,11 +40,14 @@ class MainActivity : AppCompatActivity() {
 
         button = findViewById(R.id.message_button)
         textView = findViewById(R.id.myView)
+        videoView = findViewById(R.id.videoView)
+
 
         button.setOnClickListener {
+            mService.setupMediaPlayer(videoView)
             val num: Int = mService.randomNumber
             mService.updateText("New value $num")
-            mService.setView(textView)
+            mService.setView(textView, videoView)
             Toast.makeText(this, "number: $num", Toast.LENGTH_SHORT).show()
         }
     }
