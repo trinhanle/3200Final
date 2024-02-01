@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">k2023_04_20_mediaPlayer_video</string>
+    <string name="video_on">Video on</string>
+    <string name="video_off">Video off</string>
+</resources>
