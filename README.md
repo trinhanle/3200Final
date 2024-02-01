@@ -1,2 +1,2 @@
 # CSE 3200
-## Basics for discussion
+> Basics for discussion
