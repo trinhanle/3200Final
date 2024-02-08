@@ -43,29 +43,26 @@ fun QuizComponent() {
     val allQuestions = AllQuestions()
     val nextQuestion = NextQuestion()
 
-    Card() {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            var questionNumber by remember { mutableStateOf(0) }
-            var question by remember {
-                mutableStateOf(allQuestions.getQuestion(questionNumber).questionText)
-            }
-
-            Text(question)
-            Row() {
-                Button(onClick = { question = "True" }) {
-                    Text("True button")
-                }
-                Button(onClick = { question = "False" }) {
-                    Text("False button")
-                }
-                Button(onClick = {
-                    questionNumber = nextQuestion.getNextIncQuestionNumber()
-                    question = allQuestions.getQuestion(questionNumber).questionText
-                }) {
-                    Text("Next question")
-                }
-            }
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        var questionNumber by remember { mutableStateOf(0) }
+        var question by remember {
+            mutableStateOf(allQuestions.getQuestion(questionNumber).questionText)
         }
 
+        Text(question)
+        Row() {
+            Button(onClick = { question = "True" }) {
+                Text("True button")
+            }
+            Button(onClick = { question = "False" }) {
+                Text("False button")
+            }
+            Button(onClick = {
+                questionNumber = nextQuestion.getNextIncQuestionNumber()
+                question = allQuestions.getQuestion(questionNumber).questionText
+            }) {
+                Text("Next question")
+            }
+        }
     }
 }
