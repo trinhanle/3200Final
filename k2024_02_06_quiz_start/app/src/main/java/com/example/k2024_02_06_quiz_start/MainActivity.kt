@@ -81,8 +81,8 @@ fun QuizComponent(name: String?) {
 
             Text(text = question, fontSize = 22.sp, modifier = Modifier.padding(5.dp))
             Row() {
-                Button(onClick = { if (answer) score.incrementScore(allQuestions.getQuestion(questionNumber).difficulty)
-
+                Button(onClick = {
+                    if (answer) score.incrementScore(allQuestions.getQuestion(questionNumber).difficulty)
                 }) {
                     Text("True button")
                 }
