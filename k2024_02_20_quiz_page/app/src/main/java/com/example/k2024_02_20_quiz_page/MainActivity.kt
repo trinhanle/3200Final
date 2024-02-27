@@ -17,16 +17,29 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.k2024_02_20_quiz_page.controller.NextQuestion
+import com.example.k2024_02_20_quiz_page.model.AllQuestions
+import com.example.k2024_02_20_quiz_page.model.Question
 import com.example.k2024_02_20_quiz_page.ui.theme.K2024_02_20_quiz_pageTheme
 import com.example.k2024_02_20_quiz_page.ui.theme.Pink40
 
+val allQuestions: AllQuestions = AllQuestions()
+
 class MainActivity : ComponentActivity() {
+
+    val nextQuestion: NextQuestion = NextQuestion()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var myQuestion = allQuestions.getQuestion(2)
+
         setContent {
             K2024_02_20_quiz_pageTheme {
                 // A surface container using the 'background' color from the theme
@@ -34,7 +47,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    QuizPage("my Ultra Quiz!")
+                    QuizPage("my Ultra Quiz!", nextQuestion)
                     //Greeting("Android")
                 }
             }
@@ -43,7 +56,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun QuizPage(name: String, modifier: Modifier = Modifier) {
+fun QuizPage(name: String, nextQuestion: NextQuestion, modifier: Modifier = Modifier) {
+    var questionNumber = remember { mutableStateOf(nextQuestion.getQuestionNumber())}
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
@@ -54,7 +69,7 @@ fun QuizPage(name: String, modifier: Modifier = Modifier) {
         )
         Card(modifier = Modifier.fillMaxWidth(0.75F)
             .fillMaxHeight(0.35F)) {
-            Text("This is a question")
+            Text(allQuestions.getQuestion(questionNumber.value).questionText)
         }
         Row()
         {
@@ -63,7 +78,7 @@ fun QuizPage(name: String, modifier: Modifier = Modifier) {
                    Text("True")
                }
                 Spacer(modifier = Modifier.size(16.dp))
-                Button(onClick = { }) {
+                Button(onClick = { questionNumber.value++ % allQuestions.getNumberOfQuestions()} ) {
                     Text("Next")
                 }
             }
@@ -78,9 +93,7 @@ fun QuizPage(name: String, modifier: Modifier = Modifier) {
                 }
             }
         }
-
     }
-
 }
 
 @Composable
