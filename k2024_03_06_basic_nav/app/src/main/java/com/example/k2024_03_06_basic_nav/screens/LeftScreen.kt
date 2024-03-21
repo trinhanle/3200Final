@@ -29,16 +29,11 @@ fun LeftScreen(name: String, myViewModel: LeftScreenViewModel) {
         modifier = Modifier.fillMaxSize(0.75F)
     ) {
         Text("Hello $name")
-        Spacer(modifier = Modifier.padding(25.dp))
+        Spacer(modifier = Modifier.padding(15.dp))
         Text("Hello ${counter.value.toString()}")
-        TextField(
-            value = counter.value.toString(),
-            onValueChange = {  },
-            label = { Text("No label") }
-        )
-
+        Spacer(modifier = Modifier.padding(15.dp))
         Button(onClick = { myViewModel.increment() }) {
-            Text( counter.value.toString() )
+            Text( "Count: " + counter.value.toString() )
         }
     }
 }

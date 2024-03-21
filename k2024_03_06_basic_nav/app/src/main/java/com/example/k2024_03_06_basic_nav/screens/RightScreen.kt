@@ -1,9 +1,11 @@
 package com.example.k2024_03_06_basic_nav.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
@@ -24,29 +26,32 @@ import com.example.k2024_03_06_basic_nav.timers.RightScreenViewModel
 @Composable
 fun RightScreen(name: String, myViewModel: RightScreenViewModel) {
 
-    //var secondsText by remember { mutableStateOf(myViewModel) }
-    //var secondsText = myViewModel.getSeconds()
+    var time = myViewModel.time
+
     val text = remember {
         mutableStateOf("0")
     }
-    val currentTime = CurrentTime()
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize(0.75F)
     ) {
-        Text("Hello $name")
-        Spacer(modifier = Modifier.padding(25.dp))
-        Text("Hello ${currentTime.seconds}", fontSize = 30.sp)
-        OutlinedTextField(
-            value = text.value,
-            onValueChange = { text.value = it  },
-            label = { Text("No label") }
-        )
-
-        Button(onClick = { currentTime.updateTime() }) {
-            Text( "Update seconds" )
+        Text("Hello $name", fontSize = 36.sp)
+        Spacer(modifier = Modifier.padding(15.dp))
+        Text("Minutes:Seconds = ${time.value.getCurrentMinutes()}:${time.value.getCurrentSeconds()}", fontSize = 26.sp)
+        Spacer(modifier = Modifier.padding(15.dp))
+        OutlinedTextField(value = text.value,
+            onValueChange = { text.value = time.value.getCurrentSeconds() },
+            modifier = Modifier
+                .fillMaxWidth(0.5F)
+                .align(Alignment.CenterHorizontally))
+        Spacer(modifier = Modifier.padding(15.dp))
+        Button(onClick = {  myViewModel.updateText()
+                            text.value = time.value.getCurrentSeconds()
+        }
+            ) {
+            Text(  text = time.value.getCurrentSeconds() + " seconds " )
         }
     }
 }
