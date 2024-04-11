@@ -39,4 +39,11 @@ class CountingService : Service() {
         mMessenger = Messenger(IncomingHandler(this))
         return mMessenger.binder
     }
+
+    inner class LocalBinder : Binder() {
+        // Return this instance of LocalService so clients can call public methods
+        fun getService(): CountingService {
+            return this@CountingService
+        }
+    }
 }
