@@ -22,6 +22,14 @@ import com.example.k2024_04_16_network_quiz.models.questions.Question
 import com.example.k2024_04_16_network_quiz.models.score.ScoreViewModel
 import com.google.gson.Gson
 
+
+var toggle: Boolean = true
+var urlJSON = "http://192.168.163.1:8080/questions"
+var altUrl0 = "https://images.metmuseum.org/CRDImages/ad/original/117343.jpg"
+var altUrlImage = "https://images.metmuseum.org/CRDImages/ad/original/ADA3882.jpg"
+var urlIMAGE = altUrlImage
+
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var getDataButton: Button
@@ -35,8 +43,8 @@ class MainActivity : AppCompatActivity() {
 
     private var gson = Gson()
 
-    val urlJSON = "http://192.168.163.1:8080/questions";
-    val urlIMAGE = "http://192.168.163.1:8080/static/stamford_harbor.jpg";
+
+
 
 
     private lateinit var binding: ActivityMainBinding
@@ -60,16 +68,18 @@ class MainActivity : AppCompatActivity() {
 
         getDataButton.setOnClickListener {
 
+
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 urlJSON,
                 null,
                 { response ->
                     // Display the first 500 characters of the response string.
-                    basicQuestionView.setText("Response is: ${response}")
+
 
                     var questionList: List<Question> = gson.fromJson(response.toString(), Array<Question>::class.java ).toList()
-                    Log.i("PGB", questionList[0].getQuestion())
+
+                    basicQuestionView.setText(questionList[1].getQuestion())
                 },
                 { error ->  basicQuestionView.text = "Error: ${error}" })
 
@@ -78,8 +88,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         getImageButton.setOnClickListener {
+            if (toggle) {
+                toggle = ! toggle
+                urlIMAGE = altUrl0
+            } else {
+                urlJSON = altUrlImage
+            }
 
-            val imageRequest = ImageRequest(
+            var imageRequest = ImageRequest(
                 urlIMAGE,
                 { response: Bitmap ->
                     // Display the first 500 characters of the response string.

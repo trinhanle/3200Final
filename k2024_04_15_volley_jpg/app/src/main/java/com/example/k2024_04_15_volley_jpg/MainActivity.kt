@@ -42,20 +42,21 @@ class MainActivity : ComponentActivity() {
 
         var name = mutableStateOf("Android Yeah!")
 
+        var myUrl = "https://images.metmuseum.org/CRDImages/ad/original/130480.jpg"
+
         setContent {
             K2024_04_15_volley_jpgTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    imageFromURL()
+                    imageFromURL(myUrl)
                 }
             }
         }
     }
     @Composable
-    fun imageFromURL() {
+    fun imageFromURL(myUrl: String) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -67,7 +68,7 @@ class MainActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = rememberAsyncImagePainter("https://images.metmuseum.org/CRDImages/ad/original/130480.jpg"),
+                painter = rememberAsyncImagePainter(myUrl),
                 contentDescription = "MET Image",
                 modifier = Modifier
                     .wrapContentSize()
