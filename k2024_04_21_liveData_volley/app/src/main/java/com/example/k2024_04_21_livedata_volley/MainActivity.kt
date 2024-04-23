@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.loadImagesButton.setOnClickListener{
+        binding.loadImageMetaDataButton.setOnClickListener{
             val nextIndex = uriViewModel.nextImageNumber()
             val metUrl = metPublicDomainUrl + nextIndex.toString()
             uriViewModel.setMetaDataUrl(metUrl)
@@ -45,8 +45,6 @@ class MainActivity : AppCompatActivity() {
                 uriViewModel.getMetaDataUrl(),
                 null,
                 { response ->
-                    // Display the first 500 characters of the response string.
-
                     imageData = gson.fromJson(response.toString(), JSON_MetMuseum::class.java )
                     uriViewModel.setImageUrl(imageData?.primaryImage.toString() ?: "Foobar")
                 },
@@ -59,12 +57,10 @@ class MainActivity : AppCompatActivity() {
             val imageRequest = ImageRequest(
                 urlIMAGE,
                 { response: Bitmap ->
-                    // Display the first 500 characters of the response string.
                     binding.imageView.setImageBitmap(response)
                 },
                 0,0,
                 ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
-
                 { error ->  Log.i("PGB", "Error: ${error}" )})
 
             volleyQueue.add(imageRequest)
