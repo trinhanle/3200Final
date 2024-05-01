@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
                 },
                 { error ->  Log.i("PGB" ,"Error: ${error}") })
             volleyQueue.add(jsonObjectRequest)
+
+            Toast.makeText(MainActivity.this, "Loading Image Meta Data"), Toast.LENGTH_SHORT).show()
         }
 
         binding.nextImageButton.setOnClickListener {
@@ -64,6 +66,24 @@ class MainActivity : AppCompatActivity() {
                 { error ->  Log.i("PGB", "Error: ${error}" )})
 
             volleyQueue.add(imageRequest)
+
+            Toast.makeText(MainActivity.this, "Retrieving Next Image", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.prevImageButton.setOnClickListener {
+            val urlIMAGE = uriViewModel.getImageUrl().toString()
+            val imageRequest = ImageRequest(
+                urlIMAGE,
+                { response: Bitmap ->
+                    binding.imageView.setImageBitmap(response)
+                },
+                0,0,
+                ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
+                { error ->  Log.i("PGB", "Error: ${error}" )})
+
+            volleyQueue.add(imageRequest)
+
+            Toast.makeText(MainActivity.this, "Retrieving Previous Image", Toast.LENGTH_SHORT).show()
         }
     }
 }
