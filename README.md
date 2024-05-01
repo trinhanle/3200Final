@@ -1,2 +1,1 @@
-# CSE 3200
-> Basics for discussion
+# CSE 3200 Final
