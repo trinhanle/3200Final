@@ -1,0 +1,8 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+        <!-- Customize dark mode styles here -->
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/text</item>
+        <!-- Define other dark mode styles here -->
+    </style>
+</resources>
